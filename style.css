@@ -1,0 +1,122 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: grey;
+}
+
+#characters
+{
+    margin-top: 15px;
+    /* border: 1px solid; */
+}
+#search
+{
+    width: 27%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+#searchtext, #searchbutton
+{
+    border-radius: 20px;
+}
+#searchtext
+{
+    width: 20vw;
+    padding: 5px;
+    padding-left: 15px;
+    border: 2px ridge;
+    cursor: text;
+    background-color: white;
+}
+#searchbutton
+{
+    border: none;
+    background-color: rgba(29, 116, 29, 0.801);
+    color: white;
+    padding: 8px;
+    cursor: pointer;
+}
+#characterslist
+{
+    width: 100vw;
+    display: inline-flex;
+    padding: 10px;
+    padding-left: 40px;
+    margin-top: 70px;
+}
+#characterinfocontainer
+{
+    margin: auto;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+#chrname
+{
+    text-align: center;
+}
+
+
+.frame
+{
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    background-color: rebeccapurple;
+    transition: all 0.2s ease-in 0s;
+}
+.frame:hover
+{
+    border-color: rebeccapurple;
+    background-color: blueviolet;
+    box-shadow: 4px 5px 6px white;
+}
+.frame > p
+{
+    border: 1px solid;
+    border-left: none;
+    border-right: none;
+    background-color: rgba(150, 23, 23, 0.459);
+
+    transition: font-size 0.2s ease-in-out 0s;
+}
+.frame:hover > p
+{
+    font-size: 20px;
+}
+.frame > img, .frame, .cover, #characterinfocontainer > img
+{
+    border-radius: 30px;
+}
+.frame > img
+{
+    cursor: pointer;
+}
+.frame > button
+{
+    padding: 3px 20px;
+    background-color: rgba(29, 116, 29, 0.801);
+    color: white;
+    border: 2px white;
+    margin: 10px;
+    border-radius: 10px;
+    border-style:groove;
+    background-color: rgba(150, 23, 23, 0.459);
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+.frame > button:hover
+{
+    background-color: rgb(32, 0, 61);
+}
+.episode
+{
+    margin-bottom: 10px;
+    border: 1px solid;
+}
