@@ -1,3 +1,4 @@
+//Ссылка на API который хранит информацию о персонажах
 const charactersApiUrl = "https://rickandmortyapi.com/api/character";
 
 const form = document.forms.searchform;
@@ -9,6 +10,7 @@ const charactersContainer = document.getElementById("characters");
 
 // localStorage.clear();
 
+//Функция для добавления персонажей на страницу
 const addCharcterOnPage = (character) =>
 {
     charactersList.innerHTML += 
@@ -20,6 +22,7 @@ const addCharcterOnPage = (character) =>
         </div>
     `
 }
+//Функция для проверки на повторения пресонажей которые уже были добавлены
 const checkCharactersInList = (character) =>
 {
     if(!localStorage.getItem(character.id))
@@ -32,28 +35,26 @@ const checkCharactersInList = (character) =>
         alert(`Such character as ${character.name} already added!`);
     }
 }
-
+//Поиск и добавление персонажа в список
 form.addEventListener("submit", async (event) => 
 {
     event.preventDefault();
 
     try
     {
+        //Проверка поля поиска на пустоту
         if(searchText.value !== "")
         {
+            //Отправляем запрос к API в случае негативного ответа возвращаем ошибку
             const requestResult = await fetch(`${charactersApiUrl}/${searchText.value}`).then(async result => 
             {
                 return result.ok ? result.json() : result.json().then(errorMessge => { throw new Error(errorMessge.error) });
             });
 
-            if(requestResult.length == undefined)
-            {
-                checkCharactersInList(requestResult);
-            }
-            else
-            {
-                requestResult.map(item => checkCharactersInList(item));
-            }
+            //Обработка при получении всего одного объекта
+            if(requestResult.length == undefined) checkCharactersInList(requestResult);
+            //Обработка множества объектов
+            else requestResult.map(item => checkCharactersInList(item));
         }
         else
         {
@@ -65,6 +66,7 @@ form.addEventListener("submit", async (event) =>
         alert(e.message);
     }
 });
+//Удаление персонажа
 charactersList.addEventListener("click", event => 
 {
     const deleteButton = event.target.closest("button");
@@ -76,6 +78,7 @@ charactersList.addEventListener("click", event =>
             localStorage.removeItem(deleteButton.id);
 
             charactersList.innerHTML = "";
+            //Обновление списка персонажей после удаления
             for(let i = 0; i < localStorage.length; i++)
             {
                 const key = localStorage.key(i);
@@ -86,18 +89,21 @@ charactersList.addEventListener("click", event =>
         }
     }
 });
+//Выбор персонажа для отображения полной информации о нем
 charactersList.addEventListener("click", async event => 
 {
     const choosedCharacter = event.target.closest("img");
     
     if(choosedCharacter !== null)
     {
+        //Получаем id отображаемого персонажа
         const choosedCharacterId = choosedCharacter.parentNode.getElementsByTagName("button")[0].id;
         localStorage.setItem("choosedCharacterId", choosedCharacterId);
 
         window.location.replace("/index1.html");
     }
 })
+//Загрузка ранее выбранных персонажей
 window.addEventListener("load", () => 
 {
     if(charactersList.innerHTML === "" && localStorage.length > 0)

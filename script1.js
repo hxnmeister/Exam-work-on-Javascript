@@ -1,5 +1,6 @@
 const characterFullInfo = document.getElementById("characterfullinfo");
 
+//Функция для сбора информации о персонаже
 const getCharacterFullInfo = async (character) =>
 {
     characterFullInfo.innerHTML =
@@ -41,6 +42,7 @@ const getCharacterFullInfo = async (character) =>
 }
 
 window.addEventListener("load", () => getCharacterFullInfo(JSON.parse(localStorage.getItem(localStorage.getItem("choosedCharacterId")))));
+//Переход на главную страницу
 characterFullInfo.addEventListener("click", (event) => 
 {
     const button = event.target.closest("button");
