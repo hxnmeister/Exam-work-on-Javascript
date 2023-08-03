@@ -8,8 +8,6 @@ const searchBar = document.getElementById("searchbar");
 const charactersList = document.getElementById("characterslist");
 const charactersContainer = document.getElementById("characters");
 
-// localStorage.clear();
-
 //Функция для добавления персонажей на страницу
 const addCharcterOnPage = (character) =>
 {
